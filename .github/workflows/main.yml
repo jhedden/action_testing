@@ -1,10 +1,6 @@
 name: Helm Lint
 
 on: [push, pull_request]
-
-defaults:
-  run:
-    working-directory: helm-chart/
     
 jobs:
   lint-test:
@@ -20,4 +16,4 @@ jobs:
         id: lint
         uses: helm/chart-testing-action@v1.0.0-rc.1
         with:
-          command: lint
+          command: --chart-dirs helm-chart/ lint
