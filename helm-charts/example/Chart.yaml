@@ -1,6 +1,7 @@
 apiVersion: v2
 name: helm-chart
 description: A Helm chart for Kubernetes
+home: https://github.com/jhedden/action_testing
 
 # A chart can be either an 'application' or a 'library' chart.
 #
