@@ -9,12 +9,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Fetch history
-        run: git fetch --prune --unshallow
-
       - name: Run chart-testing (lint)
         id: lint
-        uses: helm/chart-testing-action@v1.0.0-rc.1
-        with:
-          command: lint
-          config: tests/ct.yaml
+        run: |
+            docker run \
+            -v $(pwd):/charts \
+            -w /charts \
+            quay.io/helmpack/chart-testing:v3.0.0-rc.1 \
+            ct lint \
+            --chart-dirs=helm-charts \
+            --all \
+            --validate-maintainers=false
